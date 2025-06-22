@@ -28,4 +28,6 @@ jobs:
         uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: agrinext
-          baseHref: /AgriNext/   # 👈 Must match your **repo** name exactly (case-sensitive)
+          baseHref: /AgriNext/
+          buildWebRenderer: ""     # 👈 Disable the renderer argument entirely to prevent errors
+
