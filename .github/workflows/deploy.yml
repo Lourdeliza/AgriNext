@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
@@ -20,14 +20,17 @@ jobs:
       - name: Enable Flutter Web
         run: flutter config --enable-web
 
-      - name: Install Dependencies
+      - name: Install dependencies
         working-directory: agrinext
         run: flutter pub get
 
-      - name: Build and Deploy to GitHub Pages
-        uses: bluefireteam/flutter-gh-pages@v7
+      - name: Build Flutter Web
+        working-directory: agrinext
+        run: flutter build web --release --base-href /AgriNext/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          workingDir: agrinext
-          baseHref: /AgriNext/
-          webRenderer: ""      # 👈 ignored by your Flutter version, but harmless here
-          customArgs: --release --base-href /AgriNext/  # 👈 this bypasses --web-renderer
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: agrinext/build/web
+
