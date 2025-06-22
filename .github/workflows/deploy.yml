@@ -21,13 +21,14 @@ jobs:
         run: flutter config --enable-web
 
       - name: Install Dependencies
-        working-directory: agrinext  # <--- Use the correct folder name here
+        working-directory: agrinext
         run: flutter pub get
 
       - name: Build and Deploy to GitHub Pages
         uses: bluefireteam/flutter-gh-pages@v7
         with:
-          workingDir: agrinext       # <--- Must match the folder above
-          baseHref: /AgriNext/       # <--- Should match the repository name for GitHub Pages
+          workingDir: agrinext
+          baseHref: /AgriNext/   # 👈 Must match your **repo** name exactly (case-sensitive)
+
 
 
